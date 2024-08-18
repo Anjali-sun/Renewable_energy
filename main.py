@@ -1,3 +1,5 @@
+# 1.***** EXTRACT DATA *****
+#------------------------
 pip install opendatasets
 #opendatasets is a Python library for downloading datasets 
 #from online sources like Kaggle and Google Drive 
@@ -34,3 +36,27 @@ newdata3
 #print (data)
 #END of Downloading from GITHUB Code
 #--------------------------------------
+#CONNECT TO POSTGREQL DATABASE
+#--------------------------------------
+#SQLAlchemy is the Python SQL toolkit 
+#and Object Relational Mapper that gives application developers 
+#the full power and flexibility of SQL.
+# DEFINE THE DATABASE CREDENTIALS
+user = 'adminanju'
+password = 'admin1234'
+host = 'localhost'
+port = 5432
+database = 'NorthWIND1'
+#postgresql://[user[:password]@][host][:port]
+import sqlalchemy
+#connection_uri="postgresql://postgres:admin1234@localhost:5432/NorthWIND1"
+#db_engine=sqlalchemy.create_engine(connection_uri)
+url2="postgresql://{0}:{1}@{2}:{3}/{4}".format(user,password,host,port,database)
+db_engine=sqlalchemy.create_engine(url2)
+import pandas as pd
+#Read Data from customers table
+pd.read_sql("SELECT * FROM customers",db_engine)
+
+#****** TRANSFORM *********
+#--------------------------
+
